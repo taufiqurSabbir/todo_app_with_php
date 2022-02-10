@@ -60,21 +60,22 @@ $task_read = $task->pending_task_read($_SESSION['id']);
 
 
 
-                        <div class="container">
-                            <div class="row">
-                                <div class="col">
-                                    <h4>Welcome,<span style="font-size:3rem; font-weight:bold;"> <?php echo $_SESSION['username']?> </span> </h4>
-                                </div>
-                                <div class="col">
-
-                                </div>
-                                <div class="col">
-
-                                        <a type="button" href="login_res/logout.php" class="btn btn-danger">Log Out</a>
-
-                                </div>
-                            </div>
+                <div class="container">
+                    <div class="row">
+                        <div class="col">
+                            <h4>Welcome,<span style="font-size:3rem; font-weight:bold;">
+                                    <?php echo $_SESSION['username']?> </span> </h4>
                         </div>
+                        <div class="col">
+
+                        </div>
+                        <div class="col">
+
+                            <a type="button" href="login_res/logout.php" class="btn btn-danger">Log Out</a>
+
+                        </div>
+                    </div>
+                </div>
 
 
 
@@ -175,79 +176,21 @@ $task_read = $task->pending_task_read($_SESSION['id']);
                         </div>
                         <div class="col">
                             <div class="btn-group" role="group" aria-label="Basic mixed styles example">
-                                <a onClick="return confirm('Task complete?')" type="button"
-                                    class="btn btn-outline-success"
-                                    href="com.php?task_id=<?=$all_task['id']?>">Complete </a>
+                                <a onClick="return confirm('Task Complete?')" type="button"
+                                    class="btn btn-outline-success" href="com.php?task_id=<?=$all_task['id']?>">Complete
+                                </a>
 
-
-
-
-
-
-                                <!-- Button trigger modal -->
-                                <button type="button" class="btn btn-warning" data-bs-toggle="modal"
-                                    data-bs-target="#exampleModal" href="edit.php?task_id=<?=$all_task['id']?>" >
-                                    Edit
-                                </button>
-
-
-
-
-                                <!-- Modal -->
-                                <div class="modal fade" id="exampleModal" tabindex="-1"
-                                    aria-labelledby="exampleModalLabel" aria-hidden="true">
-                                    <div class="modal-dialog">
-                                        <div class="modal-content">
-                                            <div class="modal-header">
-                                                <h5 class="modal-title" id="exampleModalLabel">Edit Task</h5>
-                                                <a type="button" class="btn-close" data-bs-dismiss="modal"
-                                                    aria-label="Close"> </a>
-                                            </div>
-                                            <div class="modal-body">
-
-
-
-                                                <!-- popup edit section start -->
-                                                <form>
-
-                                                    <div class="mb-3">
-                                                        <label for="task_title" class="form-label">Task
-                                                            Title</label>
-                                                        <input type="text" class="form-control" id="task_title"
-                                                            aria-describedby="emailHelp"
-                                                            value="<?=$all_task['title']?>">
-                                                        <div id="emailHelp" class="form-text"> Enter your
-                                                            modified task
-                                                        </div>
-                                                    </div>
-                                                    <div class="mb-3">
-                                                        <label for="exampleInputPassword1"
-                                                            class="form-label">Date</label>
-                                                        <input type="date" class="form-control"
-                                                            id="exampleInputPassword1" value="<?=$all_task['date']?>">
-                                                    </div>
-
-                                                    <div class="modal-footer">
-                                                        <button type="button" class="btn btn-secondary"
-                                                            data-bs-dismiss="modal">Close</button>
-                                                        <input type="submit" class="btn btn-primary" value="Save Task">
-                                                    </div>
-
-                                                </form>
-
-                                                <!-- popup edit section end -->
-
-                                            </div>
-
-                                        </div>
-                                    </div>
-                                </div>
+                                <a type="button" class="btn btn-outline-danger"
+                                    href="edit.php?task_id=<?=$all_task['id']?>">Edit
+                                </a>
 
                             </div>
+
                         </div>
                     </div>
                 </div>
                 <?php endforeach; ?>
+            </div>
 
 
 
@@ -260,57 +203,56 @@ $task_read = $task->pending_task_read($_SESSION['id']);
 
 
 
-<!--                complete task -->
+            <!--                complete task -->
 
-                <div class="p-2 mx-4 border-black-25 border-bottom"></div>
-                <br>
+            <div class="p-2 mx-4 border-black-25 border-bottom"></div>
+            <br>
 
-                <h2 style="text-align:center; padding-bottom:30px; color:darkgreen; font-weight:bold">Completed task</h2>
-                <?php
+            <h2 style="text-align:center; padding-bottom:30px; color:darkgreen; font-weight:bold">Completed task
+            </h2>
+            <?php
                $com_task_read =$task->com_task_read($_SESSION['id'])
                 ?>
 
-                <?php foreach( $com_task_read as $com_all_task):?>
-                <div class="container">
-                    <div class="row shadow-sm p-3 mb-5 bg-body rounded">
-                        <div class="col">
+            <?php foreach( $com_task_read as $com_all_task):?>
+            <div class="container">
+                <div class="row shadow-sm p-3 mb-5 bg-body rounded">
+                    <div class="col">
 
 
 
-                            <h3 class=""> <?=$com_all_task['title']?> </h3>
-                        </div>
-                        <div class="col">
-                            <div class="col-auto m-1 p-0 px-3">
-                                <div class="row">
-                                    <div
-                                            class="col-auto d-flex align-items-center rounded bg-white border border-warning">
-                                        <i class="fa fa-hourglass-2 my-2 px-2 text-warning btn" data-toggle="tooltip"
-                                           data-placement="bottom" title="" data-original-title="Due on date"></i>
-                                        <h6 class="text my-2 pr-2"> <?=$com_all_task['date']?></h6>
-                                    </div>
-                                </div>
-                            </div>
-
-                        </div>
-                        <div class="col">
-                            <div class="btn-group" role="group" aria-label="Basic mixed styles example">
-                                <a onClick="return confirm('Wanna delete task?')" type="button"
-                                   class="btn btn-success"
-                                   href="reverse.php?task_id=<?=$com_all_task['id']?>">pending </a>
-
-                                <a onClick="return confirm('Wanna delete task?')" type="button"
-                                   class="btn btn-danger"
-                                   href="delete.php?task_id=<?=$com_all_task['id']?>">Delete </a>
-
-                                            </div>
-
-                                        </div>
-                                    </div>
-                                </div>
-                <?php endforeach; ?>
-                            </div>
-                        </div>
+                        <h3 class=""> <?=$com_all_task['title']?> </h3>
                     </div>
+                    <div class="col">
+                        <div class="col-auto m-1 p-0 px-3">
+                            <div class="row">
+                                <div class="col-auto d-flex align-items-center rounded bg-white border border-warning">
+                                    <i class="fa fa-hourglass-2 my-2 px-2 text-warning btn" data-toggle="tooltip"
+                                        data-placement="bottom" title="" data-original-title="Due on date"></i>
+                                    <h6 class="text my-2 pr-2"> <?=$com_all_task['date']?></h6>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                    <div class="col">
+                        <div class="btn-group" role="group" aria-label="Basic mixed styles example">
+                            <a onClick="return confirm('Wanna delete task?')" type="button" class="btn btn-success"
+                                href="reverse.php?task_id=<?=$com_all_task['id']?>">pending </a>
+
+                            <a onClick="return confirm('Wanna delete task?')" type="button" class="btn btn-danger"
+                                href="delete.php?task_id=<?=$com_all_task['id']?>">Delete
+                            </a>
+
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+            <?php endforeach; ?>
+        </div>
+    </div>
+    </div>
 
 
 

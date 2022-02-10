@@ -34,9 +34,15 @@ class Task extends database{
         return $this->data_read($query);
     }
 
-    public function edit_task($task_id){
-        $query = "SELECT * FROM task where  id	= '$task_id'";
+    public function edit_task($task_id,$user){
+        $query = "SELECT * FROM task where  id	= '$task_id' and user_id ='$user'";
         return $this->data_read($query);
+    }
+
+
+    public function edit_update($title,$date,$task_id,$user){
+        $query = " UPDATE task SET title = '$title',date='$date'WHERE id = '$task_id' and user_id ='$user' ";
+        $this->data_write($query);
     }
 
 
